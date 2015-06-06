@@ -10,6 +10,10 @@ public final class Price {
         this.amount = amount;
     }
 
+    public Price addTo(final Price price) {
+        return new Price(amount.add(price.amount));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
