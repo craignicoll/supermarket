@@ -91,4 +91,31 @@ class PriceSpec extends Specification {
         divisor << [0, -1, -2]
     }
 
+    @Unroll('Correctly subtract prices #scenario')
+    def 'Correctly subtract prices '() {
+        given: 'a price'
+        Price price = new Price(amountToSubtract)
+
+        when: 'subtracting prices'
+        Price total = price.subtractFrom(new Price(amountToSubtractFrom))
+
+        then: 'the total should be correct'
+        total == new Price(expectedTotal)
+
+        where:
+        scenario | amountToSubtract      | amountToSubtractFrom  | expectedTotal
+        '1-0=1'  | BigDecimal.ZERO       | BigDecimal.ONE        | BigDecimal.ONE
+        '3-2=1'  | BigDecimal.valueOf(2) | BigDecimal.valueOf(3) | BigDecimal.ONE
+        '10-5=2' | BigDecimal.valueOf(5) | BigDecimal.TEN        | BigDecimal.valueOf(5)
+    }
+
+    @Unroll('Throw NullPointerException if attempting to subtract from null')
+    def 'Throw NullPointerException if attempting to subtract from null'() {
+        when: 'subtracting from null'
+        price.subtractFrom(null)
+
+        then: 'a NullPointerException should be thrown'
+        thrown NullPointerException
+    }
+
 }

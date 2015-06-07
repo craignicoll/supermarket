@@ -32,6 +32,11 @@ public final class Price {
         return new Price(amount.divide(BigDecimal.valueOf(divisor)));
     }
 
+    public Price subtractFrom(final Price price) {
+        Objects.requireNonNull(price, "Cannot subtract from null.");
+        return new Price(price.amount.subtract(amount));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
