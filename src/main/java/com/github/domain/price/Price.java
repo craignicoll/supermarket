@@ -1,15 +1,14 @@
-package com.github.domain;
+package com.github.domain.price;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
 public final class Price {
-
-    private static final Price ZERO = new Price(BigDecimal.ZERO);
 
     private final BigDecimal amount;
 
@@ -23,9 +22,14 @@ public final class Price {
         return new Price(amount.add(price.amount));
     }
 
-    public Price multiply(final int multiplier) {
+    public Price multiplyBy(final int multiplier) {
         Preconditions.checkArgument(multiplier >= 0, "Cannot multiply with a negative number. Tried with [%s].", multiplier);
-        return IntStream.iterate(1, i -> i + 1).limit(multiplier).mapToObj(i -> this).reduce(ZERO, (p1, p2) -> p1.addTo(p2));
+        return new Price(IntStream.iterate(1, i -> i + 1).limit(multiplier).mapToObj(i -> this.amount).reduce(BigDecimal.ZERO, (a, b) -> a.add(b)).setScale(2, RoundingMode.HALF_UP));
+    }
+
+    public Price divideBy(final int divisor) {
+        Preconditions.checkArgument(divisor >= 1, "Cannot divide with a number less than 1. Tried with [%s].", divisor);
+        return new Price(amount.divide(BigDecimal.valueOf(divisor)));
     }
 
     @Override

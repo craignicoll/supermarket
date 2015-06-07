@@ -1,17 +1,17 @@
-package com.github.discount
+package com.github.price.discount
 
-import com.github.domain.Price
-import com.github.domain.discount.ThreeForOnePoundDiscount
+import com.github.domain.price.Price
+import com.github.domain.price.discount.ThreeForOnePoundDiscount
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class ThreeForOnePoundDiscountSpec extends Specification {
 
-    private static final Price FORTY_PENCE = new Price(BigDecimal.valueOf(0.40d))
-    private static final Price EIGHTY_PENCE = new Price(BigDecimal.valueOf(0.80d))
+    private static final Price FORTY_PENCE = new Price(new BigDecimal("0.40"))
+    private static final Price EIGHTY_PENCE = new Price(new BigDecimal("0.80"))
     private static final Price ONE_POUND = new Price(BigDecimal.ONE)
-    private static final Price ONE_POUND_FORTY_PENCE = new Price(BigDecimal.valueOf(1.40d))
+    private static final Price ONE_POUND_FORTY_PENCE = new Price(new BigDecimal("1.40"))
     private static final int QUANTITY = 1
 
     @Shared

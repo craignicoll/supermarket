@@ -1,6 +1,6 @@
-package com.github
+package com.github.price
 
-import com.github.domain.Price
+import com.github.domain.price.Price
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -37,7 +37,7 @@ class PriceSpec extends Specification {
     @Unroll('Correctly multiply prices #scenario')
     def 'Correctly multiply prices'() {
         when: 'multiplying prices'
-        Price total = price.multiply(multiplier)
+        Price total = price.multiplyBy(multiplier)
 
         then: 'the total should be correct'
         total == new Price(expectedTotal)
@@ -49,16 +49,46 @@ class PriceSpec extends Specification {
         '1*2=2'  | 2          | BigDecimal.valueOf(2)
     }
 
-    @Unroll('Throw IllegalArgumentException if multiplying with #multiplier')
-    def 'Throw IllegalArgumentException if multiplying with negative number'() {
-        when: 'multiplying with negative number'
-        price.multiply(multiplier)
+    @Unroll('Throw IllegalArgumentException if multiplier is less than 0 [#multiplier]')
+    def 'Throw IllegalArgumentException if multiplier is less than 0'() {
+        when: 'multiplying with number less than 0'
+        price.multiplyBy(multiplier)
 
         then: 'an IllegalArgumentException should be thrown'
         thrown IllegalArgumentException
 
         where:
         multiplier << [-1, -2, -3]
+    }
+
+    @Unroll('Correctly divide prices #scenario')
+    def 'Correctly divide prices'() {
+        given: 'a price'
+        Price price = new Price(BigDecimal.TEN)
+
+        when: 'dividing prices'
+        Price total = price.divideBy(divisor)
+
+        then: 'the total should be correct'
+        total == new Price(expectedTotal)
+
+        where:
+        scenario  | divisor | expectedTotal
+        '10/1=10' | 1       | BigDecimal.TEN
+        '10/2=5'  | 2       | BigDecimal.valueOf(5)
+        '10/5=2'  | 5       | BigDecimal.valueOf(2)
+    }
+
+    @Unroll('Throw IllegalArgumentException if divisor is less than 1 [#divisor]')
+    def 'Throw IllegalArgumentException if dividing with number less than 1'() {
+        when: 'dividing by number less than 1'
+        price.divideBy(divisor)
+
+        then: 'an IllegalArgumentException should be thrown'
+        thrown IllegalArgumentException
+
+        where:
+        divisor << [0, -1, -2]
     }
 
 }

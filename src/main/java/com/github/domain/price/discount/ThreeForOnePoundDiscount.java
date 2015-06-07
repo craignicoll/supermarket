@@ -1,6 +1,6 @@
-package com.github.domain.discount;
+package com.github.domain.price.discount;
 
-import com.github.domain.Price;
+import com.github.domain.price.Price;
 import com.google.common.base.Preconditions;
 
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ public class ThreeForOnePoundDiscount implements Discount {
         Objects.requireNonNull(price, "A price must be provided to apply a discount.");
         Preconditions.checkArgument(quantity >= 1, "Discount can only be applied for 1 or more products. Tried with [%s].", quantity);
         if (quantity < DISCOUNT_QUALIFICATION_QUANTITY) {
-            return price.multiply(quantity);
+            return price.multiplyBy(quantity);
         } else if (quantity == DISCOUNT_QUALIFICATION_QUANTITY) {
             return ONE_POUND;
         }
