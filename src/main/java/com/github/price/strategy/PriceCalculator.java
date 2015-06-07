@@ -1,6 +1,6 @@
-package com.github.domain.price.strategy;
+package com.github.price.strategy;
 
-import com.github.domain.price.Price;
+import com.github.price.Price;
 
 public interface PriceCalculator {
 

@@ -1,7 +1,7 @@
-package com.github.domain.price.strategy;
+package com.github.price.strategy;
 
-import com.github.domain.price.Price;
-import com.github.domain.price.discount.Discount;
+import com.github.price.Price;
+import com.github.price.discount.Discount;
 import com.google.common.base.Preconditions;
 
 public final class QuantityPriceStrategy extends AbstractPriceStrategy implements PriceStrategy {

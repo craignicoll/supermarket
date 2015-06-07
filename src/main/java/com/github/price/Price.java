@@ -1,4 +1,4 @@
-package com.github.domain.price;
+package com.github.price;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;

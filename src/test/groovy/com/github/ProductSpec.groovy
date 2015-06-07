@@ -1,11 +1,10 @@
 package com.github
 
-import com.github.domain.Product
-import com.github.domain.price.Price
-import com.github.domain.price.discount.ThreeForOnePoundDiscount
-import com.github.domain.price.discount.ThreeForTwoDiscount
-import com.github.domain.price.strategy.QuantityPriceStrategy
-import com.github.domain.price.strategy.WeightPriceStrategy
+import com.github.price.Price
+import com.github.price.discount.ThreeForOnePoundDiscount
+import com.github.price.discount.ThreeForTwoDiscount
+import com.github.price.strategy.QuantityPriceStrategy
+import com.github.price.strategy.WeightPriceStrategy
 import spock.lang.Specification
 import spock.lang.Unroll
 

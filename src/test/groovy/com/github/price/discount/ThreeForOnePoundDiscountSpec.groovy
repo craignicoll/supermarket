@@ -1,7 +1,6 @@
 package com.github.price.discount
 
-import com.github.domain.price.Price
-import com.github.domain.price.discount.ThreeForOnePoundDiscount
+import com.github.price.Price
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll

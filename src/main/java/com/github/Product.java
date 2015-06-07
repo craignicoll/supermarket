@@ -1,7 +1,7 @@
-package com.github.domain;
+package com.github;
 
-import com.github.domain.price.Price;
-import com.github.domain.price.strategy.PriceStrategy;
+import com.github.price.Price;
+import com.github.price.strategy.PriceStrategy;
 
 public final class Product {
 
