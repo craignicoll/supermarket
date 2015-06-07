@@ -4,6 +4,6 @@ import com.github.domain.price.Price;
 
 public interface PriceCalculator {
 
-    Price calculate(Price price, int quantity);
+    Price calculate(Price price, int amount);
 
 }

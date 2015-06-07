@@ -25,12 +25,12 @@ abstract class AbstractPriceStrategy {
         this.discount = Optional.of(discount);
     }
 
-    Price calculate(final int quantity, final PriceCalculator priceCalculator) {
-        Preconditions.checkArgument(quantity >= 1, "Price can only be calculated for 1 or more products. Tried with [%s].", quantity);
+    Price calculate(final int amount, final PriceCalculator priceCalculator) {
+        Preconditions.checkArgument(amount >= 1, "Price can only be calculated when amount is 1 or more. Tried with [%s].", amount);
         Objects.requireNonNull(priceCalculator, "Price calculator cannot be null.");
         return discount.isPresent()
-                ? discount.get().apply(price, quantity)
-                : priceCalculator.calculate(price, quantity);
+                ? discount.get().apply(price, amount)
+                : priceCalculator.calculate(price, amount);
     }
 
 }

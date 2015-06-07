@@ -86,7 +86,7 @@ class ProductSpec extends Specification {
 
     @Unroll('Price of #quantity fizzy drinks should be #expectedPrice')
     def 'Calculate correct price of fizzy drinks'() {
-        given: 'a fizzy drink'
+        given: 'a fizzy drink product'
         Product fizzyDrink = new Product("fizzy drink", new QuantityPriceStrategy(SEVENTY_PENCE, new ThreeForTwoDiscount()))
 
         when: 'calculating the price'
